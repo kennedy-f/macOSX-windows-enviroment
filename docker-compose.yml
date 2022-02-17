@@ -1,0 +1,22 @@
+version: "3.3"
+
+services:
+  macOs:
+    container_name: mackos
+    image: sickcodes/docker-osx:latest
+    devices:
+      - /dev/kvm
+    ports:
+      - "50922:10022"
+    environment:
+      DISPLAY: ${DISPLAY:-:0.0} # Default to :0.0 if not set
+      CORES: 8 # number of cores
+      SMP: 8 # THREADS
+      RAM: 16 # MEMORY YOU WANT TO ALLOCATE
+      GENERATE_UNIQUE: "true" # NEED TO GENERATE YOUR SERIAL FOR LOGIN IN ICLOUD
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - macos_volume:/home/arc/OSX-KVM
+volumes:
+  macos_volume:
+
